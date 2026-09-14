@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Facility | Healing Body &amp; Soul</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="content" style="padding:12px 14px 20px">
+<a class="lade-back" href="javascript:history.back()">← Back</a>
+
+<header style="text-align:center;margin:4px auto 18px;max-width:720px">
+<h1 style="margin:.2rem 0 .4rem">Our Facility</h1>
+<p style="margin:0;font-size:.94rem">Take a visual look around Healing Body &amp; Soul.</p>
+</header>
+<div class="facility-grid">
+
+<figure class="facility-card">
+<img src="images/facility-reception.jpg" alt="Reception" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Reception</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/facility-equipment-room.jpg" alt="Equipment Room" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Equipment Room</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/facility-therapy-room.jpg" alt="Therapy Room" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Therapy Room</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/facility-treatment-room.jpg" alt="Treatment Room" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Treatment Room</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/reception1.jpg" alt="Reception Area" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Reception Area</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/reception 2.jpg" alt="Reception Area 2" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Reception Area 2</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/room1.jpg" alt="Treatment Room 1" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Treatment Room 1</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/room2.jpg" alt="Treatment Room 2" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Treatment Room 2</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/room3.jpg" alt="Treatment Room 3" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Treatment Room 3</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/room4.jpg" alt="Treatment Room 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Treatment Room 4</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/room5.jpg" alt="Treatment Room 5" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Treatment Room 5</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/production room.jpg" alt="Production Room" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Production Room</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/img.jpg" alt="Facility" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/img1.jpg" alt="Facility" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/image1.jpg" alt="Facility View 1" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility View 1</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/image2.jpg" alt="Facility View 2" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility View 2</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/image3.jpg" alt="Facility View 3" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility View 3</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/image4.jpg" alt="Facility View 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility View 4</figcaption>
+</figure>
+<figure class="facility-card">
+<img src="images/image5.jpg" alt="Facility View 5" loading="lazy" onerror="this.closest('figure').style.display='none'">
+<figcaption>Facility View 5</figcaption>
+</figure>
+</div>
+<section style="margin-top:24px">
+<div style="display:flex;justify-content:space-between;align-items:end;gap:10px;flex-wrap:wrap">
+<div><h2 style="margin:.2rem 0">Health Education</h2><p style="margin:0;font-size:.9rem">Learn from our visual body and wellness charts.</p></div>
+<a class="lade-btn" href="health-charts.html">Explore Charts →</a>
+</div>
+</section>
+
+</main>
+<button class="lade-top" id="ladeTop" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+(function(){
+ const b=document.getElementById('ladeTop');
+ const t=()=>b.classList.toggle('show',window.scrollY>260);
+ window.addEventListener('scroll',t,{passive:true});
+ b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+ t();
+})();
+</script>
+</body>
+</html>
