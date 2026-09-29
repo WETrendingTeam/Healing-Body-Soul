@@ -131,8 +131,378 @@ body.album-open{overflow:hidden}
  .lightbox-count{bottom:-25px}
 }
 
-/* Final deployment polish */
-.health-charts-page{padding-top:28px!important}
-.footer-links{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(max-width:700px){.footer-links{grid-template-columns:1fr 1fr}}
-@media(max-width:390px){.footer-links{grid-template-columns:1fr}}
+
+/* =========================================================
+   SERVICES PAGE — PROFESSIONAL TREATMENT & WELLNESS LAYER
+   ========================================================= */
+
+/* Section headings */
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto 38px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 13px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: .96rem;
+}
+
+
+/* =========================================================
+   TREATMENT METHODS
+   ========================================================= */
+
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.method-card {
+    position: relative;
+    padding: 27px 25px 25px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    min-height: 205px;
+    overflow: hidden;
+    transition: transform .3s ease,
+                box-shadow .3s ease,
+                border-color .3s ease;
+}
+
+.method-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    opacity: .85;
+}
+
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: rgba(46,139,87,.22);
+}
+
+.method-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 17px;
+    border-radius: 50%;
+    background: #edf7f0;
+    color: var(--primary);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+}
+
+.method-card h3 {
+    font-size: 1.28rem;
+    margin-bottom: 8px;
+}
+
+.method-card p {
+    color: var(--muted);
+    font-size: .87rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   DIAGNOSIS METHODS
+   ========================================================= */
+
+.diagnosis-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px;
+}
+
+.diagnosis-card {
+    position: relative;
+    padding: 26px 20px;
+    min-height: 175px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 21px;
+    text-align: center;
+    transition: .3s ease;
+}
+
+.diagnosis-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: rgba(46,139,87,.2);
+}
+
+.diagnosis-card > span {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    color: #b7c8bd;
+    font-size: .68rem;
+    font-weight: 800;
+}
+
+.diagnosis-card i {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    margin: 3px auto 15px;
+    border-radius: 16px;
+    background: #edf7f0;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.diagnosis-card h3 {
+    font-size: 1.12rem;
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   FIVE BODY SYSTEMS
+   ========================================================= */
+
+.systems-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.system-card {
+    padding: 25px 19px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 21px;
+    transition: .3s ease;
+}
+
+.system-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.system-icon {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 17px;
+    border-radius: 15px;
+    background: #edf7f0;
+    color: var(--primary);
+}
+
+.system-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.system-card p {
+    color: var(--muted);
+    font-size: .82rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+   ========================================================= */
+
+.philosophy-box {
+    max-width: 900px;
+    margin: auto;
+    padding: 55px 50px;
+    text-align: center;
+    background:
+        linear-gradient(135deg, #f5faf6, #ffffff);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    box-shadow: 0 12px 40px rgba(24,50,36,.07);
+}
+
+.philosophy-box h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 15px;
+}
+
+.philosophy-box > p {
+    max-width: 690px;
+    margin: auto;
+    color: var(--muted);
+}
+
+.philosophy-line {
+    width: 55px;
+    height: 3px;
+    margin: 28px auto;
+    border-radius: 20px;
+    background: var(--secondary);
+}
+
+.philosophy-box h3 {
+    max-width: 650px;
+    margin: auto;
+    color: var(--primary-dark);
+    font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SERVICES PAGE — INTRO CARD IMPROVEMENT
+   ========================================================= */
+
+.services-grid .service-card {
+    min-height: 275px;
+    display: flex;
+    flex-direction: column;
+}
+
+.services-grid .service-card .text-link {
+    margin-top: auto;
+}
+
+.services-grid .service-card h3 {
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   SERVICES PAGE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .systems-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .diagnosis-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .method-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .systems-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .method-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .method-card {
+        min-height: auto;
+        padding: 23px 21px;
+    }
+
+    .diagnosis-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .diagnosis-card {
+        min-height: 155px;
+        padding: 22px 13px;
+    }
+
+    .diagnosis-card h3 {
+        font-size: 1rem;
+    }
+
+    .systems-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .system-card {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        column-gap: 15px;
+        align-items: start;
+        padding: 20px;
+    }
+
+    .system-icon {
+        grid-row: span 2;
+        margin-bottom: 0;
+    }
+
+    .system-card h3 {
+        margin-top: 2px;
+    }
+
+    .philosophy-box {
+        padding: 38px 22px;
+        border-radius: 24px;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .diagnosis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .diagnosis-card {
+        min-height: auto;
+        padding: 21px;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        column-gap: 14px;
+        align-items: center;
+    }
+
+    .diagnosis-card > span {
+        display: none;
+    }
+
+    .diagnosis-card i {
+        grid-row: span 2;
+        margin: 0;
+    }
+
+    .diagnosis-card h3 {
+        align-self: center;
+    }
+
+    .section-heading {
+        margin-bottom: 28px;
+    }
+
+}
