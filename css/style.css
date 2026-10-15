@@ -543,3 +543,14 @@ body.album-open{overflow:hidden}
 .facility-overview-frame video{display:block;width:100%;max-height:680px;object-fit:contain;background:#102219}
 .facility-overview-action{display:flex;justify-content:center;padding:20px 22px 24px}
 @media(max-width:700px){.facility-overview-home{padding:58px 0 68px}.facility-overview-card{border-radius:20px}.facility-overview-frame video{max-height:75vh}.facility-overview-action{padding:16px 16px 20px}}
+
+
+/* About page video replaces the former hero image while preserving its layout. */
+.about-video video{display:block;width:100%;height:500px;object-fit:cover;background:#10251a;border-radius:28px}
+.gallery-photo-album .album-item{display:block;width:100%;height:100%;padding:0;border:0;background:#eaf1ec;cursor:pointer;text-align:left;position:relative;overflow:hidden;border-radius:18px}
+.gallery-photo-album .album-item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.gallery-photo-album .album-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.38));opacity:.55;transition:opacity .25s}
+.gallery-photo-album .album-item:hover img{transform:scale(1.045)}
+.gallery-photo-album .album-item:focus-visible{outline:3px solid #2e8b57;outline-offset:3px}
+@media(max-width:900px){.about-video video{height:380px}}
+@media(max-width:700px){.about-video video{height:300px}}
