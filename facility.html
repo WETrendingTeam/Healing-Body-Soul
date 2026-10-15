@@ -12,26 +12,28 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-/* Facility-only album layout */
-.facility-page .premium-album{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px auto 42px;max-width:1100px}
-.facility-page .album-item{position:relative;display:block;width:100%;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#eef3ef;aspect-ratio:4/3;box-shadow:0 5px 18px rgba(24,58,42,.10)}
-.facility-page .album-item.album-feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;min-height:300px}
-.facility-page .album-item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-.facility-page .album-item:hover img,.facility-page .album-item:focus-visible img{transform:scale(1.035)}
-.facility-page .album-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.48));color:#fff;font-weight:700;opacity:.9}
-.facility-page .album-overlay span{margin-right:6px}
+/* Two stacked photo albums: four photos in each */
+.facility-page .facility-albums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1050px;margin:30px auto 44px}
+.facility-page .facility-album{appearance:none;position:relative;display:flex;flex-direction:column;align-items:stretch;width:100%;min-width:0;padding:24px 22px 22px;border:1px solid #e4e8e4;border-radius:26px;background:#fff;box-shadow:0 8px 28px rgba(24,58,42,.08);text-align:left;color:inherit;cursor:pointer;overflow:hidden}
+.facility-page .album-stack{position:relative;height:245px;margin:0 8px 25px}
+.facility-page .album-stack img{position:absolute;width:86%;height:205px;left:7%;top:10px;object-fit:cover;border-radius:16px;box-shadow:0 9px 20px rgba(0,0,0,.16);transition:transform .25s ease}
+.facility-page .album-stack img:nth-child(1){transform:translate(-12px,18px) rotate(-6deg)}
+.facility-page .album-stack img:nth-child(2){transform:translate(-5px,7px) rotate(-2deg)}
+.facility-page .album-stack img:nth-child(3){transform:translate(7px,2px) rotate(3deg)}
+.facility-page .album-stack img:nth-child(4){transform:translate(0,0) rotate(0);z-index:2}
+.facility-page .facility-album:hover .album-stack img:nth-child(4),.facility-page .facility-album:focus-visible .album-stack img:nth-child(4){transform:translateY(-5px) rotate(0)}
+.facility-page .album-kicker{display:block;margin-top:4px;color:#2e7658;font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.facility-page .facility-album h2{margin:8px 0 7px;font-size:1.35rem}
+.facility-page .facility-album p{margin:0;color:#68716c;line-height:1.5}
+.facility-page .album-count{display:block;margin-top:24px;color:#176b50;font-weight:750}
 .album-lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:58px 18px 24px;background:rgba(7,18,12,.94)}
 .album-lightbox.open{display:flex}
 .album-lightbox img{display:block;max-width:min(1100px,94vw);max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 12px 40px rgba(0,0,0,.35)}
 .album-lightbox button{position:absolute;display:grid;place-items:center;border:0;border-radius:50%;width:44px;height:44px;color:#fff;background:rgba(255,255,255,.14);font-size:28px;cursor:pointer}
 .album-lightbox button:focus-visible{outline:2px solid #fff;outline-offset:3px}
-#lightboxClose{top:14px;right:16px;font-size:32px}
-#lightboxPrev{left:16px;top:50%;transform:translateY(-50%)}
-#lightboxNext{right:16px;top:50%;transform:translateY(-50%)}
-#lightboxCount{position:absolute;top:22px;left:50%;transform:translateX(-50%);color:#fff;font-size:14px;letter-spacing:.06em}
-body.album-open{overflow:hidden}
-@media(max-width:760px){.facility-page .premium-album{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.facility-page .album-item.album-feature{grid-column:span 2;grid-row:auto;aspect-ratio:4/3;min-height:0}.facility-page .album-item{border-radius:10px}.album-lightbox{padding:60px 8px 20px}.album-lightbox img{max-width:96vw;max-height:78vh}#lightboxPrev{left:8px}#lightboxNext{right:8px}}
-@media(prefers-reduced-motion:reduce){.facility-page .album-item img{transition:none}}
+#lightboxClose{top:14px;right:16px;font-size:32px}#lightboxPrev{left:16px;top:50%;transform:translateY(-50%)}#lightboxNext{right:16px;top:50%;transform:translateY(-50%)}#lightboxCount{position:absolute;top:22px;left:50%;transform:translateX(-50%);color:#fff;font-size:14px;letter-spacing:.06em}body.album-open{overflow:hidden}
+@media(max-width:700px){.facility-page .facility-albums{grid-template-columns:1fr;gap:18px;margin-top:22px}.facility-page .facility-album{padding:20px;border-radius:22px}.facility-page .album-stack{height:230px}.facility-page .album-stack img{height:190px}.album-lightbox{padding:60px 8px 20px}.album-lightbox img{max-width:96vw;max-height:78vh}#lightboxPrev{left:8px}#lightboxNext{right:8px}}
+@media(prefers-reduced-motion:reduce){.facility-page .album-stack img{transition:none}}
 </style>
 </head>
 <body>
@@ -66,47 +68,18 @@ body.album-open{overflow:hidden}
   <p>A quiet visual tour of our wellness space.</p>
 </header>
 
-<section class="premium-album" aria-label="Facility photo album">
-  <button class="album-item album-feature" type="button" data-full="images/image6.jpg" aria-label="Open facility photo">
-    <img src="images/image6.jpg" alt="Healing Body &amp; Soul facility" loading="eager">
-    <span class="album-overlay"><span>View</span> ↗</span>
+<section class="facility-albums" aria-label="Facility photo albums">
+  <button class="facility-album" type="button" data-album="0" aria-label="Open Treatment Spaces album">
+    <span class="album-stack" aria-hidden="true">
+      <img src="images/image6.jpg" alt="" loading="lazy"><img src="images/reception 2.jpg" alt="" loading="lazy"><img src="images/image4.jpg" alt="" loading="lazy"><img src="images/image1.jpg" alt="" loading="lazy">
+    </span>
+    <span class="album-kicker">Our Facility</span><h2>Treatment Spaces</h2><p>A closer look at our wellness environment.</p><span class="album-count">4 photos</span>
   </button>
-
-  <button class="album-item" type="button" data-full="images/reception 2.jpg" aria-label="Open facility photo">
-    <img src="images/reception 2.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
-  </button>
-
-  <button class="album-item" type="button" data-full="images/image4.jpg" aria-label="Open facility photo">
-    <img src="images/image4.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
-  </button>
-
-  <button class="album-item" type="button" data-full="images/image1.jpg" aria-label="Open facility photo">
-    <img src="images/image1.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
-  </button>
-
-  <button class="album-item" type="button" data-full="images/image5.jpg" aria-label="Open facility photo">
-    <img src="images/image5.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
-  </button>
-
-  <button class="album-item" type="button" data-full="images/image2.jpg" aria-label="Open facility photo">
-    <img src="images/image2.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
-  </button>
-
-  <button class="album-item" type="button" data-full="images/image3.jpg" aria-label="Open facility photo">
-    <img src="images/image3.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
-  </button>
-
-
-
-  <button class="album-item" type="button" data-full="images/production room.jpg" aria-label="Open facility photo">
-    <img src="images/production room.jpg" alt="Healing Body &amp; Soul facility" loading="lazy">
-    <span class="album-overlay"><span>View</span> ↗</span>
+  <button class="facility-album" type="button" data-album="1" aria-label="Open Facility Details album">
+    <span class="album-stack" aria-hidden="true">
+      <img src="images/image5.jpg" alt="" loading="lazy"><img src="images/image2.jpg" alt="" loading="lazy"><img src="images/image3.jpg" alt="" loading="lazy"><img src="images/production room.jpg" alt="" loading="lazy">
+    </span>
+    <span class="album-kicker">Take a Look Inside</span><h2>Facility Details</h2><p>More views of the spaces and setup.</p><span class="album-count">4 photos</span>
   </button>
 </section>
 
@@ -116,6 +89,7 @@ body.album-open{overflow:hidden}
   <img id="lightboxImage" src="" alt="Facility photo preview">
   <button type="button" id="lightboxNext" aria-label="Next image">&#8250;</button>
   <div id="lightboxCount" aria-live="polite"></div>
+</div>
 </div>
 
 <section class="facility-next">
@@ -166,57 +140,24 @@ body.album-open{overflow:hidden}
 <script src="js/scripts.js"></script>
 <script>
 (function(){
-  const items = Array.from(document.querySelectorAll('.album-item'));
-  const lightbox = document.getElementById('albumLightbox');
-  const image = document.getElementById('lightboxImage');
-  const count = document.getElementById('lightboxCount');
-  const close = document.getElementById('lightboxClose');
-  const prev = document.getElementById('lightboxPrev');
-  const next = document.getElementById('lightboxNext');
-  let current = 0;
-
-  function show(index){
-    current = (index + items.length) % items.length;
-    image.src = items[current].dataset.full;
-    count.textContent = (current + 1) + ' / ' + items.length;
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden','false');
-    document.body.classList.add('album-open');
-  }
-  function hide(){
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden','true');
-    document.body.classList.remove('album-open');
-    image.src = '';
-  }
-
-  items.forEach((item,index)=>item.addEventListener('click',()=>show(index)));
-  close.addEventListener('click',hide);
-  prev.addEventListener('click',()=>show(current-1));
-  next.addEventListener('click',()=>show(current+1));
-  lightbox.addEventListener('click',e=>{ if(e.target===lightbox) hide(); });
-
-  document.addEventListener('keydown',e=>{
-    if(!lightbox.classList.contains('open')) return;
-    if(e.key==='Escape') hide();
-    if(e.key==='ArrowLeft') show(current-1);
-    if(e.key==='ArrowRight') show(current+1);
-  });
-
-  let startX=0;
-  lightbox.addEventListener('touchstart',e=>{startX=e.changedTouches[0].screenX},{passive:true});
-  lightbox.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].screenX-startX;
-    if(Math.abs(dx)>45) show(current+(dx<0?1:-1));
-  },{passive:true});
-
-  const top=document.getElementById('ladeTop');
-  if(top){
-    const toggle=()=>top.classList.toggle('show',window.scrollY>260);
-    window.addEventListener('scroll',toggle,{passive:true});
-    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    toggle();
-  }
+  const albums = [
+    ['images/image6.jpg','images/reception 2.jpg','images/image4.jpg','images/image1.jpg'],
+    ['images/image5.jpg','images/image2.jpg','images/image3.jpg','images/production room.jpg']
+  ];
+  const lightbox=document.getElementById('albumLightbox');
+  const image=document.getElementById('lightboxImage');
+  const count=document.getElementById('lightboxCount');
+  let activeAlbum=0,current=0;
+  function show(index){const photos=albums[activeAlbum];current=(index+photos.length)%photos.length;image.src=photos[current];count.textContent=(current+1)+' / '+photos.length;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.classList.add('album-open');}
+  function hide(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.classList.remove('album-open');image.src='';}
+  document.querySelectorAll('.facility-album').forEach((album)=>album.addEventListener('click',()=>{activeAlbum=Number(album.dataset.album);show(0);}));
+  document.getElementById('lightboxClose').addEventListener('click',hide);
+  document.getElementById('lightboxPrev').addEventListener('click',()=>show(current-1));
+  document.getElementById('lightboxNext').addEventListener('click',()=>show(current+1));
+  lightbox.addEventListener('click',e=>{if(e.target===lightbox)hide();});
+  document.addEventListener('keydown',e=>{if(!lightbox.classList.contains('open'))return;if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1);});
+  let startX=0;lightbox.addEventListener('touchstart',e=>{startX=e.changedTouches[0].screenX},{passive:true});lightbox.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-startX;if(Math.abs(dx)>45)show(current+(dx<0?1:-1));},{passive:true});
+  const top=document.getElementById('ladeTop');if(top){const toggle=()=>top.classList.toggle('show',window.scrollY>260);window.addEventListener('scroll',toggle,{passive:true});top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));toggle();}
 })();
 </script>
 </body>
