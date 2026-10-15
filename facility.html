@@ -10,6 +10,29 @@
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+/* Facility-only album layout */
+.facility-page .premium-album{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px auto 42px;max-width:1100px}
+.facility-page .album-item{position:relative;display:block;width:100%;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#eef3ef;aspect-ratio:4/3;box-shadow:0 5px 18px rgba(24,58,42,.10)}
+.facility-page .album-item.album-feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;min-height:300px}
+.facility-page .album-item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.facility-page .album-item:hover img,.facility-page .album-item:focus-visible img{transform:scale(1.035)}
+.facility-page .album-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.48));color:#fff;font-weight:700;opacity:.9}
+.facility-page .album-overlay span{margin-right:6px}
+.album-lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:58px 18px 24px;background:rgba(7,18,12,.94)}
+.album-lightbox.open{display:flex}
+.album-lightbox img{display:block;max-width:min(1100px,94vw);max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.album-lightbox button{position:absolute;display:grid;place-items:center;border:0;border-radius:50%;width:44px;height:44px;color:#fff;background:rgba(255,255,255,.14);font-size:28px;cursor:pointer}
+.album-lightbox button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#lightboxClose{top:14px;right:16px;font-size:32px}
+#lightboxPrev{left:16px;top:50%;transform:translateY(-50%)}
+#lightboxNext{right:16px;top:50%;transform:translateY(-50%)}
+#lightboxCount{position:absolute;top:22px;left:50%;transform:translateX(-50%);color:#fff;font-size:14px;letter-spacing:.06em}
+body.album-open{overflow:hidden}
+@media(max-width:760px){.facility-page .premium-album{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.facility-page .album-item.album-feature{grid-column:span 2;grid-row:auto;aspect-ratio:4/3;min-height:0}.facility-page .album-item{border-radius:10px}.album-lightbox{padding:60px 8px 20px}.album-lightbox img{max-width:96vw;max-height:78vh}#lightboxPrev{left:8px}#lightboxNext{right:8px}}
+@media(prefers-reduced-motion:reduce){.facility-page .album-item img{transition:none}}
+</style>
 </head>
 <body>
 <header class="header">
@@ -87,6 +110,14 @@
   </button>
 </section>
 
+<div class="album-lightbox" id="albumLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Facility photo preview">
+  <button type="button" id="lightboxClose" aria-label="Close preview">&times;</button>
+  <button type="button" id="lightboxPrev" aria-label="Previous image">&#8249;</button>
+  <img id="lightboxImage" src="" alt="Facility photo preview">
+  <button type="button" id="lightboxNext" aria-label="Next image">&#8250;</button>
+  <div id="lightboxCount" aria-live="polite"></div>
+</div>
+
 <section class="facility-next">
   <div>
     <h2>Health Education</h2>
@@ -96,6 +127,8 @@
 </section>
 
 </main>
+
+<button class="lade-top" id="ladeTop" aria-label="Back to top">↑</button>
 
 <footer class="footer">
   <div class="container">
@@ -178,10 +211,12 @@
   },{passive:true});
 
   const top=document.getElementById('ladeTop');
-  const toggle=()=>top.classList.toggle('show',window.scrollY>260);
-  window.addEventListener('scroll',toggle,{passive:true});
-  top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-  toggle();
+  if(top){
+    const toggle=()=>top.classList.toggle('show',window.scrollY>260);
+    window.addEventListener('scroll',toggle,{passive:true});
+    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    toggle();
+  }
 })();
 </script>
 </body>
